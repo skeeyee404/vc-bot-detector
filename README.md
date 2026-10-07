@@ -45,7 +45,7 @@ Clone or download this repository directly into your Vencord `src/userplugins/` 
 
 ```bash
 # Inside your Vencord root directory:
-git clone https://github.com/skeeyee404/vc-bot-detector.git src/userplugins/botDetector
+git clone https://github.com/skeeyee404/vencord-bot-detector.git src/userplugins/botDetector
 ```
 
 Alternatively, copy `index.tsx` and `styles.css` directly into `src/userplugins/botDetector/`.
