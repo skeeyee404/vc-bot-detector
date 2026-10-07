@@ -23,7 +23,7 @@ import {
     UserStore
 } from "@webpack/common";
 
-/* Pure White Clean SVG Icons */
+/* Minimalist Clean Monochrome SVG Icons */
 const Icons = {
     Shield: () => (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -203,19 +203,19 @@ function analyzeGuild(guildId: string): AnalysisResult | null {
     const realPercent = Number((100 - botPercent).toFixed(1));
 
     let riskLevel: "safe" | "warn" | "danger" = "safe";
-    let verdict = "Bu sunucu büyük oranda mobil ve masaüstü kullanan organik kullanıcılardan oluşuyor.";
+    let verdict = "This server consists mostly of organic users on mobile and desktop clients.";
 
     if (botPercent >= 50) {
         riskLevel = "danger";
-        verdict = "Aşırı derecede web bağlantılı hesap var! Yüksek ihtimalle bot veya token raid basılmış.";
+        verdict = "Excessive web-only sessions detected! High probability of token bots or raid accounts.";
     } else if (botPercent >= 25) {
         riskLevel = "warn";
-        verdict = "Web tabanlı hesap oranı normalin üstünde (%25+), sahte hesap veya selfbot şüphesi var.";
+        verdict = "Web client ratio is noticeably elevated (25%+). Suspicious accounts or selfbots likely.";
     }
 
     return {
         guild,
-        guildName: guild?.name ?? "Sunucu",
+        guildName: guild?.name ?? "Server",
         totalGuildMembers: GuildMemberCountStore?.getMemberCount(guildId) ?? guild?.memberCount ?? memberIds.size,
         totalCached: memberIds.size,
         totalOnline,
@@ -268,7 +268,7 @@ function BotAnalysisModal({ result, modalProps }: { result: AnalysisResult; moda
                         <h2 className="vc-bd-title">{result.guildName}</h2>
                         <div className="vc-bd-subtitle">
                             <Icons.Shield />
-                            <span>Kitle Güvenlik &amp; Bot Analizi</span>
+                            <span>Audience Security &amp; Bot Audit</span>
                         </div>
                     </div>
                 </div>
@@ -280,12 +280,12 @@ function BotAnalysisModal({ result, modalProps }: { result: AnalysisResult; moda
                 <div className="vc-bd-hero-card">
                     <div className="vc-bd-scores">
                         <div className="vc-bd-score-badge vc-bd-score-real">
-                            <span className="vc-bd-score-label">Gerçek İnsan</span>
-                            <span className="vc-bd-score-val">%{result.realPercent}</span>
+                            <span className="vc-bd-score-label">Real Humans</span>
+                            <span className="vc-bd-score-val">{result.realPercent}%</span>
                         </div>
                         <div className="vc-bd-score-badge vc-bd-score-bot" style={{ alignItems: "flex-end" }}>
-                            <span className="vc-bd-score-label">Bot / Şüpheli</span>
-                            <span className="vc-bd-score-val">%{result.botPercent}</span>
+                            <span className="vc-bd-score-label">Bots / Suspicious</span>
+                            <span className="vc-bd-score-val">{result.botPercent}%</span>
                         </div>
                     </div>
 
@@ -303,63 +303,63 @@ function BotAnalysisModal({ result, modalProps }: { result: AnalysisResult; moda
                     <div className="vc-bd-stat-card">
                         <div className="vc-bd-stat-icon"><Icons.Users /></div>
                         <div className="vc-bd-stat-details">
-                            <span className="vc-bd-stat-title">Sunucu Üyeleri</span>
+                            <span className="vc-bd-stat-title">Total Members</span>
                             <span className="vc-bd-stat-value">{result.totalGuildMembers.toLocaleString()}</span>
-                            <span className="vc-bd-stat-sub">Önbellek: {result.totalCached}</span>
+                            <span className="vc-bd-stat-sub">Cached: {result.totalCached}</span>
                         </div>
                     </div>
 
                     <div className="vc-bd-stat-card">
                         <div className="vc-bd-stat-icon"><Icons.Activity /></div>
                         <div className="vc-bd-stat-details">
-                            <span className="vc-bd-stat-title">Aktif Çevrimiçi</span>
-                            <span className="vc-bd-stat-value">{result.totalOnline} Kişi</span>
-                            <span className="vc-bd-stat-sub">Botlar: {result.officialBots}</span>
+                            <span className="vc-bd-stat-title">Active Online</span>
+                            <span className="vc-bd-stat-value">{result.totalOnline} Users</span>
+                            <span className="vc-bd-stat-sub">Official Bots: {result.officialBots}</span>
                         </div>
                     </div>
 
                     <div className="vc-bd-stat-card">
                         <div className="vc-bd-stat-icon"><Icons.Smartphone /></div>
                         <div className="vc-bd-stat-details">
-                            <span className="vc-bd-stat-title">Mobil Bağlantı</span>
+                            <span className="vc-bd-stat-title">Mobile Client</span>
                             <span className="vc-bd-stat-value">{result.mobileUsers}</span>
-                            <span className="vc-bd-stat-sub" style={{ color: "#57f287" }}>Organik Kitle</span>
+                            <span className="vc-bd-stat-sub" style={{ color: "#57f287" }}>Organic Audience</span>
                         </div>
                     </div>
 
                     <div className="vc-bd-stat-card">
                         <div className="vc-bd-stat-icon"><Icons.Monitor /></div>
                         <div className="vc-bd-stat-details">
-                            <span className="vc-bd-stat-title">Masaüstü (Desktop)</span>
+                            <span className="vc-bd-stat-title">Desktop Client</span>
                             <span className="vc-bd-stat-value">{result.desktopUsers}</span>
-                            <span className="vc-bd-stat-sub">Masaüstü</span>
+                            <span className="vc-bd-stat-sub">Trusted Audience</span>
                         </div>
                     </div>
 
                     <div className="vc-bd-stat-card">
                         <div className="vc-bd-stat-icon"><Icons.Globe /></div>
                         <div className="vc-bd-stat-details">
-                            <span className="vc-bd-stat-title">Yalnızca Web</span>
+                            <span className="vc-bd-stat-title">Web Only</span>
                             <span className="vc-bd-stat-value">{result.webOnlyUsers}</span>
-                            <span className="vc-bd-stat-sub" style={{ color: "#ed4245" }}>Şüpheli / Selfbot</span>
+                            <span className="vc-bd-stat-sub" style={{ color: "#ed4245" }}>Suspicious / Selfbot</span>
                         </div>
                     </div>
 
                     <div className="vc-bd-stat-card">
                         <div className="vc-bd-stat-icon"><Icons.UserX /></div>
                         <div className="vc-bd-stat-details">
-                            <span className="vc-bd-stat-title">Profil Resmi Yok</span>
+                            <span className="vc-bd-stat-title">No Avatar</span>
                             <span className="vc-bd-stat-value">{result.defaultAvatarCount}</span>
-                            <span className="vc-bd-stat-sub">Varsayılan avatar</span>
+                            <span className="vc-bd-stat-sub">Default pfp</span>
                         </div>
                     </div>
 
                     <div className="vc-bd-stat-card" style={{ gridColumn: "span 2" }}>
                         <div className="vc-bd-stat-icon"><Icons.Clock /></div>
                         <div className="vc-bd-stat-details">
-                            <span className="vc-bd-stat-title">Taze / Yeni Hesaplar</span>
-                            <span className="vc-bd-stat-value">{result.newAccountCount} Hesap</span>
-                            <span className="vc-bd-stat-sub">Son 14 gün içinde açılmış</span>
+                            <span className="vc-bd-stat-title">Fresh Accounts</span>
+                            <span className="vc-bd-stat-value">{result.newAccountCount} Accounts</span>
+                            <span className="vc-bd-stat-sub">Created in the last 14 days</span>
                         </div>
                     </div>
                 </div>
@@ -383,7 +383,7 @@ function BotAnalysisModal({ result, modalProps }: { result: AnalysisResult; moda
                     className="vc-bd-btn vc-bd-btn-primary"
                     onClick={modalProps.onClose}
                 >
-                    Kapat
+                    Close
                 </button>
             </div>
         </Modal>
@@ -402,16 +402,16 @@ const makeContextMenuPatch = (): NavContextMenuPatchCallback => (children, { gui
     group.push(
         <Menu.MenuItem
             id="vc-bot-detector-analyze"
-            label="Bot Oranını Analiz Et"
+            label="Analyze Bot Ratio"
             action={() => {
                 const res = analyzeGuild(guild.id);
                 if (!res) {
-                    showToast("⚠️ Yeterli üye verisi bulunamadı. Sağdaki üye listesini biraz kaydırıp tekrar deneyin.", "failure");
+                    showToast("⚠️ Insufficient member data. Scroll down the member list and try again.", "failure");
                     return;
                 }
 
                 openBotAnalysisModal(res);
-                showToast(`Analiz: %${res.realPercent} Gerçek | %${res.botPercent} Bot`, "success");
+                showToast(`Audit: ${res.realPercent}% Real | ${res.botPercent}% Bot`, "success");
             }}
         />
     );
@@ -419,8 +419,8 @@ const makeContextMenuPatch = (): NavContextMenuPatchCallback => (children, { gui
 
 export default definePlugin({
     name: "BotDetector",
-    description: "Sunucudaki kullanıcıların istemci türlerine (Mobil, Masaüstü, Web) ve hesap durumlarına göre bot/gerçek oranını hesaplar.",
-    authors: [{ name: "SkeeYee", id: 0n }],
+    description: "Audits server members by client status (Mobile, Desktop, Web) and account age to calculate bot vs real user ratio.",
+    authors: [{ name: "skeeyee404", id: 0n }],
 
     contextMenus: {
         "guild-context": makeContextMenuPatch(),

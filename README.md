@@ -2,7 +2,7 @@
 
 # 🛡️ BotDetector (Vencord Userplugin)
 
-**Discord sunucularındaki bot, sahte ve organik kitle oranını analiz eden gelişmiş Vencord eklentisi.**
+**An advanced Vencord userplugin that analyzes Discord servers to detect bot, fake, and organic user ratios based on client presence and account metadata.**
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Made for Vencord](https://img.shields.io/badge/Vencord-Userplugin-5865F2?logo=discord&logoColor=white)](https://vencord.dev)
@@ -12,64 +12,64 @@
 
 ---
 
-## 🌟 Özellikler
+## 🌟 Features
 
-- 📱 **Mobil & Masaüstü Ayrımı:** Gerçek organik kullanıcıları mobil ve masaüstü istemcilerine göre tespit eder.
-- 🌐 **Web & Selfbot Tespiti:** Masaüstü veya mobil olmadan yalnızca web soketi açmış şüpheli / token raid hesaplarını ayrıştırır.
-- 👤 **Varsayılan Avatar Analizi:** Profil resmi olmayan boş hesapları listeler.
-- ⏳ **Hesap Yaşı Denetimi:** Discord Snowflake ID üzerinden son 14 günde açılmış taze bot/raid hesaplarını tespit eder.
-- 📊 **Premium Dashboard UI:** Sunucu ikonu ve banner'ı ile uyumlu, saf beyaz minimalist vektör ikonlara ve çift renkli canlı ilerleme çubuğuna sahip açılır pencere.
-- 🖱️ **Sağ Tık Menüsü Entegrasyonu:** Sunucu simgesine veya sunucu başlığına sağ tıklayıp tek tıkla analiz başlatabilme.
-
----
-
-## 📸 Görünüm
-
-- **Gerçek İnsan vs. Bot Oran Çubuğu** (Yeşil & Kırmızı degrade)
-- **Detaylı İstatistik Izgarası:**
-  - 👥 Toplam Üye & Önbellek Sayısı
-  - 📈 Çevrimiçi Gerçek Kişi & Resmi Botlar
-  - 📱 Mobil Bağlantılar *(Organik Kitle)*
-  - 🖥️ Masaüstü Bağlantılar *(Güvenilir Kitle)*
-  - 🌐 Yalnızca Web *(Şüpheli / Selfbot)*
-  - 👤 Profil Resmi Olmayanlar
-  - ⏳ Taze Hesaplar *(< 14 Gün)*
-- **Otomatik Güvenlik & Risk Teşhisi** (Güvenli / Şüpheli / Yüksek Risk)
+- 📱 **Mobile & Desktop Detection:** Detects legitimate organic users connected via mobile and desktop clients.
+- 🌐 **Web & Selfbot Identification:** Distinguishes suspicious token raid and selfbot accounts that only maintain a web WebSocket session without desktop or mobile clients.
+- 👤 **Default Avatar Audit:** Tracks accounts that haven't set a profile avatar.
+- ⏳ **Account Age Check:** Leverages Discord Snowflake timestamps to detect newly generated raid accounts created within the last 14 days.
+- 📊 **Premium Dashboard UI:** Dark-mode modal dialog equipped with minimalist monochrome vector icons, guild banner & icon integration, and a dual progress comparison bar.
+- 🖱️ **Context Menu Integration:** Seamlessly launches right from the Server icon or Server Header popout menu.
 
 ---
 
-## 🚀 Kurulum
+## 📸 Preview & Metrics
 
-### 1. Dosyaları Vencord'a Ekleyin
-Bu depoyu klonlayın veya indirin, ardından klasörü Vencord kaynak kodunuzdaki `src/userplugins/` dizinine taşıyın:
+- **Real Human vs. Bot Ratio Bar** (Smooth green & red gradient bar)
+- **Comprehensive Statistics Grid:**
+  - 👥 Total Server Members & Cached Members
+  - 📈 Active Online Members & Official Bots
+  - 📱 Mobile Connections *(Most organic audience)*
+  - 🖥️ Desktop Connections *(Trusted audience)*
+  - 🌐 Web Only *(Suspicious / Potential Selfbot)*
+  - 👤 Default Avatars *(No profile picture)*
+  - ⏳ Fresh Accounts *(Created < 14 days ago)*
+- **Automated Risk Verdict** (Safe / Suspicious / High Risk)
+
+---
+
+## 🚀 Installation
+
+### 1. Add to your Vencord Source
+Clone or download this repository directly into your Vencord `src/userplugins/` folder:
 
 ```bash
-# Vencord proje dizininizde:
+# Inside your Vencord root directory:
 git clone https://github.com/skeeyee404/vc-bot-detector.git src/userplugins/botDetector
 ```
 
-Veya klasörün içindeki `index.tsx` ve `styles.css` dosyalarını doğrudan `src/userplugins/botDetector/` klasörüne kopyalayın.
+Alternatively, copy `index.tsx` and `styles.css` directly into `src/userplugins/botDetector/`.
 
-### 2. Vencord'u Derleyin
+### 2. Build Vencord
 ```bash
 pnpm build
 ```
 
-### 3. Discord'u Yenileyin
-Discord açıkken klavyeden **`Ctrl + R`** basarak istemciyi yenileyin.
+### 3. Reload Discord
+Press **`Ctrl + R`** in Discord to apply the changes.
 
 ---
 
-## 🕹️ Nasıl Kullanılır?
+## 🕹️ Usage
 
-1. Analiz etmek istediğiniz herhangi bir Discord sunucusuna girin.
-2. *(İpucu: Discord'un üye önbelleğini doldurmak için sağdaki üye listesini farenin tekerleğiyle hızlıca 1-2 tur aşağı kaydırın).*
-3. Sol taraftaki **Sunucu İkonuna** veya sol üstteki **Sunucu Başlığı Menüsüne** sağ tıklayın.
-4. **"Bot Oranını Analiz Et"** seçeneğine tıklayın.
+1. Navigate to any Discord server you want to inspect.
+2. *(Tip: Scroll down the member list on the right for 1-2 seconds to populate Discord's member cache).*
+3. Right-click the **Server Icon** (left sidebar) or the **Server Header dropdown** (top left).
+4. Click **"Analyze Bot Ratio"**.
 
 ---
 
-## 👨‍💻 Geliştirici
+## 👨‍💻 Author
 
-- **Geliştirici:** [@skeeyee404](https://github.com/skeeyee404)
-- **Lisans:** GPL-3.0-or-later
+- **Developer:** [@skeeyee404](https://github.com/skeeyee404)
+- **License:** [GPL-3.0-or-later](LICENSE)
